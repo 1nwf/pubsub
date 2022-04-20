@@ -1,2 +1,2 @@
-/target
-/Cargo.lock
+server/target
+client/target
