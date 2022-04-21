@@ -1,13 +1,13 @@
 use serde::{Deserialize, Serialize};
 #[derive(Debug, Deserialize, Serialize)]
-enum MessageType {
+pub enum MessageType {
     Subscribe,
     Unsubscribe,
     Publish,
 }
 #[derive(Debug, Deserialize, Serialize)]
 pub struct Message {
-    kind: MessageType,
-    channel: String,
-    data: Option<String>,
+    pub kind: MessageType,
+    pub channel: String,
+    pub data: Option<String>,
 }
