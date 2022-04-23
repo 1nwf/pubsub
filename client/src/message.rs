@@ -13,26 +13,26 @@ pub struct Message {
 }
 
 impl Message {
-    pub fn subscribe(channel: String) -> Message {
+    pub fn subscribe(channel: &String) -> Message {
         Message {
             kind: MessageType::Subscribe,
-            channel,
+            channel: channel.to_string(),
             data: None,
         }
     }
-    pub fn unsubscribe(channel: String) -> Message {
+    pub fn unsubscribe(channel: &String) -> Message {
         Message {
             kind: MessageType::Unsubscribe,
-            channel,
+            channel: channel.to_string(),
             data: None,
         }
     }
 
-    pub fn publish(channel: String, data: String) -> Message {
+    pub fn publish(channel: &String, data: &String) -> Message {
         Message {
             kind: MessageType::Publish,
-            channel,
-            data: Some(data),
+            channel: channel.to_string(),
+            data: Some(data.to_string()),
         }
     }
 }
