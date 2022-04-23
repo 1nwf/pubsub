@@ -1,6 +1,8 @@
+mod incoming;
 mod message;
 use std::{io::Write, net::TcpStream};
 
+use incoming::Incoming;
 use message::Message;
 
 pub struct Client {
@@ -29,6 +31,9 @@ impl Client {
         let msg_str = ron::to_string(&msg).unwrap();
         let _ = self.conn.write_all(msg_str.as_bytes());
         self.conn.flush().unwrap();
+    }
+    pub fn recieve_message(&mut self) -> Incoming {
+        Incoming { client: self }
     }
 }
 
