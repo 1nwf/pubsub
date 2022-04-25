@@ -56,7 +56,7 @@ impl Server {
             for addr in connections {
                 let conn_ptr = *addr as *mut TcpStream;
                 let mut conn = unsafe { &*conn_ptr };
-                let str_data = ron::ser::to_string(&msg.data).unwrap();
+                let str_data = ron::ser::to_string(&msg.data.as_ref().unwrap()).unwrap();
                 let str_bytes = str_data.as_bytes();
                 conn.write_all(str_bytes).expect("unable to write to buf");
                 conn.flush().expect("could not flush client output stream");
